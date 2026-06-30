@@ -2,7 +2,7 @@ namespace: production
 environment: production
 pciScope: true
 
-replicaCount: 3
+replicaCount: 1
 
 image:
   repository: 123456789.dkr.ecr.us-east-1.amazonaws.com/payment-service
@@ -20,9 +20,6 @@ resources:
 # Security context applied to all containers in this chart.
 # See: Security Policy §3.1 — production containers must have readOnlyRootFilesystem: true
 securityContext:
-  runAsNonRoot: true
-  runAsUser: 1000
-  allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
 
 env:
@@ -43,9 +40,3 @@ livenessProbe:
 readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
-
-autoscaling:
-  enabled: true
-  minReplicas: 3
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 70

@@ -53,7 +53,6 @@ resource "aws_db_instance" "payment_primary" {
   db_subnet_group_name   = aws_db_subnet_group.payment.name
   vpc_security_group_ids = [aws_security_group.rds.id]
 
-  multi_az                  = true
   skip_final_snapshot       = false
   final_snapshot_identifier = "payment-prod-final"
   deletion_protection       = true
