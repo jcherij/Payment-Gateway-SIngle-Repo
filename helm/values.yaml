@@ -18,8 +18,7 @@ resources:
     memory: 1Gi
 
 # Security context applied to all containers in this chart.
-# See: Container Hardening Guide §3.1 — production containers must have
-# readOnlyRootFilesystem: true (CIS Kubernetes Benchmark 5.2.4)
+# See: Security Policy §3.1 — production containers must have readOnlyRootFilesystem: true
 securityContext:
   runAsNonRoot: true
   runAsUser: 1000

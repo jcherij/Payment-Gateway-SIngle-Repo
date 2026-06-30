@@ -42,8 +42,8 @@ resource "aws_db_instance" "payment_primary" {
   allocated_storage = 100
   storage_type      = "gp3"
 
-  # storage_encrypted should be true per Security Policy §2.1 (PCI-DSS 3.4)
-  # All production databases storing cardholder data must have encryption at rest enabled
+  # Security Policy §2.1 — production databases storing payment data
+  # must have encryption at rest enabled.
   storage_encrypted = false
 
   db_name  = "payments"
@@ -53,13 +53,13 @@ resource "aws_db_instance" "payment_primary" {
   db_subnet_group_name   = aws_db_subnet_group.payment.name
   vpc_security_group_ids = [aws_security_group.rds.id]
 
-  multi_az                = true
-  skip_final_snapshot     = false
+  multi_az                  = true
+  skip_final_snapshot       = false
   final_snapshot_identifier = "payment-prod-final"
-  deletion_protection     = true
-  backup_retention_period = 7
-  backup_window           = "03:00-04:00"
-  maintenance_window      = "sun:05:00-sun:06:00"
+  deletion_protection       = true
+  backup_retention_period   = 7
+  backup_window             = "03:00-04:00"
+  maintenance_window        = "sun:05:00-sun:06:00"
 
   tags = {
     Environment = "production"
