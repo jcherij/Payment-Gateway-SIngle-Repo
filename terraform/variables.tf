@@ -10,12 +10,6 @@ variable "db_username" {
   default     = "payment_app"
 }
 
-variable "db_password" {
-  description = "Master password for the RDS instance"
-  type        = string
-  sensitive   = true
-}
-
 variable "vpc_id" {
   description = "VPC to deploy the RDS instance into"
   type        = string

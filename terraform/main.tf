@@ -46,9 +46,9 @@ resource "aws_db_instance" "payment_primary" {
   # must have encryption at rest enabled.
   storage_encrypted = false
 
-  db_name  = "payments"
-  username = var.db_username
-  password = var.db_password
+  db_name                   = "payments"
+  username                  = var.db_username
+  manage_master_user_password = true
 
   db_subnet_group_name   = aws_db_subnet_group.payment.name
   vpc_security_group_ids = [aws_security_group.rds.id]

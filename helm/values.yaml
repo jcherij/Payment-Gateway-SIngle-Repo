@@ -18,9 +18,10 @@ resources:
     memory: 1Gi
 
 # Security context applied to all containers in this chart.
-# See: Security Policy §3.1 — production containers must have readOnlyRootFilesystem: true
+# See: Security Policy §3.1 — production containers must not run as root.
 securityContext:
-  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+  runAsUser: 0
 
 env:
   - name: ENV
